@@ -1,0 +1,25 @@
+{
+	"name": "copy_trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "azure_to_blob_pl",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 5,
+				"startTime": "2025-09-19T14:55:00",
+				"endTime": "2025-09-20T17:59:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"name": "switch_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "adf_blob_source",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "company_products",
+				"folderPath": "load_files",
+				"container": "blobpracticecontainer"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

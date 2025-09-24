@@ -1,0 +1,13 @@
+{
+	"name": "Incremental_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sql_linked_service",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

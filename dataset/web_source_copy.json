@@ -1,0 +1,24 @@
+{
+	"name": "web_source_copy",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_practice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "sample.txt",
+				"fileSystem": "practice1container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "",
+			"firstRowAsHeader": false,
+			"quoteChar": ""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

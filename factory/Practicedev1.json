@@ -1,0 +1,9 @@
+{
+	"name": "Practicedev1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "488a881f-8b98-4c3b-a2a0-097a941e87d4",
+		"tenantId": "015e60b1-844c-47bd-b7aa-6b5bcf3501a9"
+	}
+}
