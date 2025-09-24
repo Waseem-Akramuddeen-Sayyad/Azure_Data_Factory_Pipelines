@@ -1,0 +1,179 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "Practicedev1"
+		},
+		"AzureDataLakeStorage_practice_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_practice'"
+		},
+		"adf_blob_source_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'adf_blob_source'"
+		},
+		"full_incremental_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'full_incremental'"
+		},
+		"sql_linked_service_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sql_linked_service'"
+		},
+		"AzureDataLakeStorage_practice_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakestoragepractice1.dfs.core.windows.net"
+		},
+		"Rest_linked_service_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://reqres.in/api/users"
+		},
+		"full_incremental_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "sqldevpractice1.database.windows.net"
+		},
+		"full_incremental_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Targetsql"
+		},
+		"full_incremental_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "waseemak"
+		},
+		"Tumbling_window_properties_pipeline_parameters_startdate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime\n"
+		},
+		"Tumbling_window_properties_pipeline_parameters_enddate": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowEndTime\n"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "Practicedev1_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage_practice_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_practice_accountKey')]"
+					},
+					"adf_blob_source_connectionString": {
+						"value": "[parameters('adf_blob_source_connectionString')]"
+					},
+					"full_incremental_password": {
+						"value": "[parameters('full_incremental_password')]"
+					},
+					"sql_linked_service_connectionString": {
+						"value": "[parameters('sql_linked_service_connectionString')]"
+					},
+					"AzureDataLakeStorage_practice_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_practice_properties_typeProperties_url')]"
+					},
+					"Rest_linked_service_properties_typeProperties_url": {
+						"value": "[parameters('Rest_linked_service_properties_typeProperties_url')]"
+					},
+					"full_incremental_properties_typeProperties_server": {
+						"value": "[parameters('full_incremental_properties_typeProperties_server')]"
+					},
+					"full_incremental_properties_typeProperties_database": {
+						"value": "[parameters('full_incremental_properties_typeProperties_database')]"
+					},
+					"full_incremental_properties_typeProperties_userName": {
+						"value": "[parameters('full_incremental_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "Practicedev1_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'Practicedev1_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "Practicedev1_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'Practicedev1_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "Practicedev1_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Tumbling_window_properties_pipeline_parameters_startdate": {
+						"value": "[parameters('Tumbling_window_properties_pipeline_parameters_startdate')]"
+					},
+					"Tumbling_window_properties_pipeline_parameters_enddate": {
+						"value": "[parameters('Tumbling_window_properties_pipeline_parameters_enddate')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'Practicedev1_ArmTemplate_2')]"
+			]
+		}
+	]
+}
