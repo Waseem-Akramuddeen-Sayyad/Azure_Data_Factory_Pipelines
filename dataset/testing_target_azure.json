@@ -1,0 +1,23 @@
+{
+	"name": "testing_target_azure",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage_practice",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "testing",
+				"fileSystem": "practice1container"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
